@@ -1,0 +1,38 @@
+{
+	"name": "karyscript",
+	"displayName": "KaryScript",
+	"description": "KaryScript Language Support for Visual Studio Code",
+	"version": "0.0.0",
+	"publisher": "karyfoundation",
+	"engines": {
+		"vscode": "^0.10.1"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onLanguage:karyscript"
+	],
+	"main": "./out/src/extension",
+	"contributes": {
+		"languages": [{
+			"id": "karyscript",
+			"extensions": [ ".k" ],
+			"aliases": [ "KaryScript", "karyscript" ],
+			"filenames": [ ".k" ]
+		}],
+		"grammars": [{
+			"language": "karyscript",
+			"scopeName": "source.karyscript",
+			"path": "./syntaxes/karyscript.json"
+		}]
+	},
+	"scripts": {
+		"vscode:prepublish": "node ./node_modules/vscode/bin/compile",
+		"compile": "node ./node_modules/vscode/bin/compile -watch -p ./"
+	},
+	"devDependencies": {
+		"typescript": "^1.6.2",
+		"vscode": "0.10.x"
+	}
+}

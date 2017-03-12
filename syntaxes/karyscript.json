@@ -1,0 +1,67 @@
+{
+    "fileTypes": [
+        "k"
+    ],
+    "name": "KaryScript",
+    "patterns": [
+        {
+            "include": "#comment"
+        },
+        {
+            "include": "#controls-structures"
+        },
+		{
+			"include": "#function-declaration"
+		}
+    ],
+    "repository": {
+        "comment": {
+			"match": "//.*$\\n?",
+            "name": "comment.line.double-slash.karyscript"
+        },
+        "controls-structures": {
+            "name": "control.karyscript",
+            "begin": "\\b(if|unless|for|while|try)\\b",
+            "beginCaptures": {
+                "1": "keyword.control.karyscript"
+            },
+            "end": "\\b(end)\\b",
+            "patterns": [{
+                "include": "source.karyscript"
+            }],
+            "endCaptures": {
+                "1": "keyword.control.karyscript"
+            }
+        },
+        "function-declaration": {
+            "begin": "\\b(?:(out)(?:\\s)+)?(def|async)(?:\\s)+([a-zA-Z_\\-$][\\w$]*)((?:(?:\\s)+[a-zA-Z_\\-$][\\w$]*)*)(?:\\s)*\\:",
+			"beginCaptures": {
+				"1": {
+                    "name": "storage.type.karyscript"
+                },
+                "2": {
+					"name": "storage.modifier.karyscript"
+				},
+                "3": {
+                    "name": "entity.name.function.karyscript"
+                },
+                "4": {
+                    "name": "variable.parameter.karyscript"
+                }
+			},
+            "end": "\\b(end)\\b",
+            "endCaptures": {
+                "1": {
+					"name": "storage.modifier.karyscript"
+				}
+            },
+            "name": "meta.function.karyscript",
+            "patterns": [
+                {
+                    "include": "source.karyscript"
+                }
+            ]
+        }
+    },
+    "scopeName": "source.karyscript"
+}
