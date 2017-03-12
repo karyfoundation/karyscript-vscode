@@ -3,37 +3,33 @@
         "k"
     ],
     "name": "KaryScript",
-    "patterns": [
-        {
-            "include": "#comment"
-        },
-        {
-            "include": "#controls-structures"
-        },
-		{
-			"include": "#function-declaration"
-		}
-    ],
+    "patterns": [{
+        "include": "#expression"
+    }],
     "repository": {
         "comment": {
 			"match": "//.*$\\n?",
             "name": "comment.line.double-slash.karyscript"
         },
         "controls-structures": {
-            "name": "control.karyscript",
             "begin": "\\b(if|unless|for|while|try)\\b",
-            "beginCaptures": {
-                "1": "keyword.control.karyscript"
-            },
-            "end": "\\b(end)\\b",
-            "patterns": [{
-                "include": "source.karyscript"
+			"beginCaptures": {
+				"1": {
+                    "name": "keyword.control.karyscript"
+                }
+			},
+            "patterns": [ {
+               "include": "#expression"
             }],
+            "end": "\\b(end)\\b",
             "endCaptures": {
-                "1": "keyword.control.karyscript"
+                "1": {
+					"name": "keyword.control.karyscript"
+				}
             }
         },
         "function-declaration": {
+            "name": "meta.function.karyscript",
             "begin": "\\b(?:(out)(?:\\s)+)?(def|async)(?:\\s)+([a-zA-Z_\\-$][\\w$]*)((?:(?:\\s)+[a-zA-Z_\\-$][\\w$]*)*)(?:\\s)*\\:",
 			"beginCaptures": {
 				"1": {
@@ -49,16 +45,30 @@
                     "name": "variable.parameter.karyscript"
                 }
 			},
+            "patterns": [ {
+               "include": "#expression"
+            }],
             "end": "\\b(end)\\b",
             "endCaptures": {
                 "1": {
 					"name": "storage.modifier.karyscript"
 				}
-            },
-            "name": "meta.function.karyscript",
+            }
+        },
+        "address": {
+            
+        },
+        "expression": {
+            "name": "expression.karyscript",
             "patterns": [
                 {
-                    "include": "source.karyscript"
+                    "include": "#controls-structures"
+                },
+                {
+                    "include": "#function-declaration"
+                },
+                {
+                    "include": "#comment"
                 }
             ]
         }
