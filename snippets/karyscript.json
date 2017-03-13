@@ -1,0 +1,20 @@
+{
+	"simple if": {
+		"prefix": "if",
+		"body": [
+			"if ${1:condition}:",
+			"   $0",
+            "end"
+		],
+		"description": "Simple if"
+	},
+    "simple unless": {
+		"prefix": "unless",
+		"body": [
+			"unless ${1:condition}:",
+			"   $0",
+            "end"
+		],
+		"description": "Simple unless"
+	}
+}

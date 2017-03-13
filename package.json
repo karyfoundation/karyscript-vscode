@@ -25,7 +25,11 @@
 			"language": "karyscript",
 			"scopeName": "source.karyscript",
 			"path": "./syntaxes/karyscript.json"
-		}]
+		}],
+		"snippets": [{
+			"language": "karyscript",
+			"path": "./snippets/karyscript.json"
+      	}]
 	},
 	"scripts": {
 		"vscode:prepublish": "node ./node_modules/vscode/bin/compile",
