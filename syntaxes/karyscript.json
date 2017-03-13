@@ -61,7 +61,7 @@
         },
         "class-declaration": {
             "name": "meta.class.karyscript",
-            "begin": "\\b((?:out(?:\\s)+)?)((?:class)?)(?:\\s)+([0-9a-zA-Z\\$\\-_][\\w$-_]+)(?:\\s)+(extends)(?:\\s)+([0-9a-zA-Z\\$\\-_][\\w$-_]+)?(?:\\s)*\\:",
+            "begin": "\\b(?:(out)(?:\\s)+)?((?:class)?)(?:\\s)+([0-9a-zA-Z\\$\\-_][\\w\\$\\-_]*)(?:(?:\\s)+(extends)(?:\\s)+([0-9a-zA-Z\\$\\-_][\\w\\$\\-_]*)(?:\\s)*|(?:\\s)*)?\\:",
 			"beginCaptures": {
 				"1": {
                     "name": "storage.type.karyscript"
