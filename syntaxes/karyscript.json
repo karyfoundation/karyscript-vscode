@@ -70,13 +70,13 @@
 					"name": "storage.type.class.karyscript"
 				},
                 "3": {
-                    "name": "meta.class.karyscript"
+                    "name": "entity.name.type.class.karyscript"
                 },
                 "4": {
                     "name": "storage.type.class.karyscript"
                 },
                 "5": {
-                    "name": "meta.class.karyscript"
+                    "name": "entity.name.type.class.karyscript"
                 }
 			},
             "patterns": [{
