@@ -11,6 +11,10 @@
 			"match": "//.*$\\n?",
             "name": "comment.line.double-slash.karyscript"
         },
+        "keywords": {
+            "match": "\\b(?:also(?:\\s)+if|return|throw|yield|delete|new|of|in|up|down|when|to|via|clone|import|void|await|async|catch|finally|case|default|continue|debugger)\\b",
+            "name": "keyword.control.karyscript"
+        },
         "controls-structures": {
             "begin": "\\b(if|unless|for|while|try)\\b",
 			"beginCaptures": {
@@ -55,8 +59,35 @@
 				}
             }
         },
-        "address": {
-            
+        "class-declaration": {
+            "name": "meta.class.karyscript",
+            "begin": "\\b((?:out(?:\\s)+)?)((?:class)?)(?:\\s)+([0-9a-zA-Z\\$\\-_][\\w$-_]+)(?:\\s)+(extends)(?:\\s)+([0-9a-zA-Z\\$\\-_][\\w$-_]+)?(?:\\s)*\\:",
+			"beginCaptures": {
+				"1": {
+                    "name": "storage.type.karyscript"
+                },
+                "2": {
+					"name": "storage.type.class.karyscript"
+				},
+                "3": {
+                    "name": "meta.class.karyscript"
+                },
+                "4": {
+                    "name": "storage.type.class.karyscript"
+                },
+                "5": {
+                    "name": "meta.class.karyscript"
+                }
+			},
+            "patterns": [{
+               "include": "#expression"
+            }],
+            "end": "\\b(end)\\b",
+            "endCaptures": {
+                "1": {
+					"name": "storage.type.class.karyscript"
+				}
+            }
         },
         "expression": {
             "name": "expression.karyscript",
@@ -65,10 +96,16 @@
                     "include": "#controls-structures"
                 },
                 {
+                    "include": "#class-declaration"
+                },
+                {
                     "include": "#function-declaration"
                 },
                 {
                     "include": "#comment"
+                },
+                {
+                    "include": "#keywords"
                 }
             ]
         }
