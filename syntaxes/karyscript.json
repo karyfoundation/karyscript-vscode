@@ -11,8 +11,12 @@
 			"match": "//.*$\\n?",
             "name": "comment.line.double-slash.karyscript"
         },
+        "number": {
+            "match": "\\b(0x[0-9a-f]+|[0-9]+(?:\\.[0-9]+)?)\\b",
+            "name": "constant.numeric.karyscript"
+        },
         "keywords": {
-            "match": "\\b(?:also(?:\\s)+if|return|throw|yield|delete|new|of|in|up|down|when|to|via|clone|import|void|await|async|catch|finally|case|default|continue|debugger)\\b",
+            "match": "\\b(?:also(?:\\s)+(?:if|unless)|return|throw|yield|delete|new|of|in|up|down|when|to|via|clone|import|void|await|async|catch|finally|case|default|continue|debugger|else)\\b",
             "name": "keyword.control.karyscript"
         },
         "controls-structures": {
@@ -89,6 +93,14 @@
 				}
             }
         },
+        "literal": {
+            "name": "literal.karyscript",
+            "patterns": [
+                {
+                    "include": "#number"
+                }
+            ]
+        },
         "expression": {
             "name": "expression.karyscript",
             "patterns": [
@@ -106,6 +118,9 @@
                 },
                 {
                     "include": "#keywords"
+                },
+                {
+                    "include": "#literal"
                 }
             ]
         }
