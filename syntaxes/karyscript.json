@@ -53,8 +53,15 @@
             "name": "storage.type.karyscript"
         },
         "identifier": {
-            "match": "\\b([0-9a-zA-Z\\$\\-_][\\w\\$\\-_]*)\\b",
-            "name": "variable.other.readwrite.karyscript"
+            "match": "\\b((?:(?:\\/(?:\\s)*)?[0-9a-zA-Z\\$\\-_](?:[\\w\\$\\-_])*(?:\\s)*\\/(?:\\s)*)*)([0-9a-zA-Z\\$\\-_](?:[\\w\\$\\-_])*)\\b",
+            "captures": {
+                "1": {
+					"name": "variable.other.object.karyscript"
+				},
+                "2": {
+                    "name": "variable.other.property.karyscript"
+                }
+            }
         },
         "zone-declaration": {
             "begin": "\\b(zone)(?:\\s)+([0-9a-zA-Z\\$\\-_][\\w\\$\\-_\\/]*)(?:\\s)*\\:",
@@ -105,12 +112,15 @@
         },
         "s-expression": {
             "name": "s-expression.karyscript",
-            "begin": "(\\()(?:\\s)*([0-9a-zA-Z\\$_\\-][\\w\\$_\\-]*)\\b",
+            "begin": "(\\()(?:\\s)*((?:\\/(?:\\s)*)?(?:[0-9a-zA-Z\\$_\\-](?:[\\w\\$_\\-])*(?:\\s)*\\/(?:\\s)*)*)([0-9a-zA-Z\\$_\\-](?:[\\w\\$_\\-])*)\\b",
             "beginCaptures": {
                 "1": {
                     "name": "meta.brace.round.karyscript"
                 },
                 "2": {
+                    "name": "variable.other.object.karyscript"
+                },
+                "3": {
                     "name": "entity.name.function.karyscript"
                 }
             },
