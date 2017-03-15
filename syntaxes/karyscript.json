@@ -19,6 +19,18 @@
             "match": "\\b(?:also(?:\\s)+(?:if|unless)|return|throw|yield|delete|new|of|in|up|down|when|to|via|clone|import|void|await|async|catch|finally|case|default|continue|debugger|else)\\b",
             "name": "keyword.control.karyscript"
         },
+        "punctuation-comma": {
+			"name": "punctuation.separator.comma.js",
+			"match": ","
+		},
+		"punctuation-accessor": {
+			"name": "punctuation.accessor.js",
+			"match": "\/"
+		},
+        "constants-identifiers": {
+            "match": "\\b(?:true|false|on|off|right|wrong|undefined|ufo|null|nothing|NaN)\\b",
+            "name": "constant.language.karyscript"
+        },
         "controls-structures": {
             "begin": "\\b(if|unless|for|while|try)\\b",
 			"beginCaptures": {
@@ -35,6 +47,28 @@
 					"name": "keyword.control.karyscript"
 				}
             }
+        },
+        "declaration-types": {
+            "match": "\\b(fix|mut)\\b",
+            "name": "storage.type.karyscript"
+        },
+        "zones": {
+            "begin": "\\b(zone)((?:\\s)+[0-9a-zA-Z\\$\\-_][\\w\\$\\-_\\.]*(?:\\s)*|(?:\\s)*)\\:",
+            "beginCaptures": {
+                "1": {
+					"name": "storage.modifier.karyscript"
+				},
+                "2": {
+                    "name": "entity.name.function.karyscript"
+                }
+            },
+            "patterns": [ {
+               "include": "#expression"
+            }],
+            "end": "\\b(end)\\b",
+            "1": {
+				"name": "storage.modifier.karyscript"
+			}
         },
         "function-declaration": {
             "name": "meta.function.karyscript",
@@ -93,6 +127,14 @@
 				}
             }
         },
+        "comparison-operator": {
+            "match": "(?:\\=\\=|\\!\\=|\\>|\\>\\=|\\<|\\<\\=)",
+            "name": "keyword.operator.comparison.karyscript"
+        },
+        "assignment-operator": {
+            "name": "keyword.operator.assignment",
+            "match": "(?:\\=|\\/\\=)"
+        },
         "literal": {
             "name": "literal.karyscript",
             "patterns": [
@@ -121,6 +163,18 @@
                 },
                 {
                     "include": "#class-declaration"
+                },
+                {
+                    "include": "#comparison-operator"
+                },
+                {
+                    "include": "#assignment-operator"
+                },
+                {
+                    "include": "#constants-identifiers"
+                },
+                {
+                    "include": "#zone"
                 }
             ]
         }
