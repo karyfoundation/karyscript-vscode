@@ -52,8 +52,12 @@
             "match": "\\b(fix|mut)\\b",
             "name": "storage.type.karyscript"
         },
-        "zones": {
-            "begin": "\\b(zone)((?:\\s)+[0-9a-zA-Z\\$\\-_][\\w\\$\\-_\\.]*(?:\\s)*|(?:\\s)*)\\:",
+        "identifier": {
+            "match": "\\b([0-9a-zA-Z\\$\\-_][\\w\\$\\-_]*)\\b",
+            "name": "variable.other.readwrite.karyscript"
+        },
+        "zone-declaration": {
+            "begin": "\\b(zone)(?:\\s)+([0-9a-zA-Z\\$\\-_][\\w\\$\\-_\\/]*)(?:\\s)*\\:",
             "beginCaptures": {
                 "1": {
 					"name": "storage.modifier.karyscript"
@@ -66,9 +70,11 @@
                "include": "#expression"
             }],
             "end": "\\b(end)\\b",
-            "1": {
-				"name": "storage.modifier.karyscript"
-			}
+            "endCaptures": {
+                "1": {
+					"name": "storage.modifier.karyscript"
+				}
+            }
         },
         "function-declaration": {
             "name": "meta.function.karyscript",
@@ -94,6 +100,27 @@
             "endCaptures": {
                 "1": {
 					"name": "storage.modifier.karyscript"
+				}
+            }
+        },
+        "s-expression": {
+            "name": "s-expression.karyscript",
+            "begin": "(\\()(?:\\s)*([0-9a-zA-Z\\$_\\-][\\w\\$_\\-]*)\\b",
+            "beginCaptures": {
+                "1": {
+                    "name": "meta.brace.round.karyscript"
+                },
+                "2": {
+                    "name": "entity.name.function.karyscript"
+                }
+            },
+            "patterns": [{
+               "include": "#expression"
+            }],
+            "end": "(\\))",
+            "endCaptures": {
+                "1": {
+					"name": "meta.brace.round.karyscript"
 				}
             }
         },
@@ -174,7 +201,13 @@
                     "include": "#constants-identifiers"
                 },
                 {
-                    "include": "#zone"
+                    "include": "#zone-declaration"
+                },
+                {
+                    "include": "#s-expression"
+                },
+                {
+                    "include": "#identifier"
                 }
             ]
         }
