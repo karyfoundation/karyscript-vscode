@@ -67,6 +67,10 @@
                 }
             }
         },
+        "placeholder": {
+            "match": "@[0-9a-zA-Z\\$\\-_](?:[\\w\\$\\-_])*\\b",
+            "name": "constant.language.placeholder.karyscript"
+        },
         "zone-declaration": {
             "begin": "\\b(zone)(?:\\s)+([0-9a-zA-Z\\$\\-_][\\w\\$\\-_\\/]*)(?:\\s)*\\:",
             "beginCaptures": {
@@ -578,6 +582,9 @@
                 },
                 {
                     "include": "#object-key"
+                },
+                {
+                    "include": "#placeholder"
                 },
                 {
                     "include": "#identifier"
