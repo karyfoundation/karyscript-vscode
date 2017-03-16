@@ -16,7 +16,7 @@
             "name": "constant.numeric.karyscript"
         },
         "keywords": {
-            "match": "\\b(?:also(?:\\s)+(?:if|unless)|mut|fix|return|throw|yield|delete|new|of|in|up|down|when|to|via|clone|import|void|await|async|catch|finally|case|default|continue|debugger|else)\\b",
+            "match": "\\b(?:also(?:\\s)+(?:if|unless)|mut|fix|return|throw|yield|delete|new|of|in|up|down|when|to|via|clone|import|void|await|async|catch|finally|case|default|continue|debugger|else|use|from|as)\\b",
             "name": "keyword.control.karyscript"
         },
         "punctuation-comma": {
