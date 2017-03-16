@@ -113,18 +113,15 @@
         },
         "function-declaration": {
             "name": "meta.function.karyscript",
-            "begin": "\\b(?:(out)(?:\\s)+)?(def|async)(?:\\s)+([a-zA-Z_\\-$][\\w$]*)((?:(?:\\s)+[a-zA-Z_\\-$][\\w$]*)*)(?:\\s)*\\:",
+            "begin": "\\b(def|async)(?:\\s)+((?:[0-9a-zA-Z\\$\\-_])+)((?:(?:\\s)+(?:[0-9a-zA-Z\\$\\-_,])+)*)(?:\\s)*\\:",
 			"beginCaptures": {
-				"1": {
-                    "name": "storage.type.karyscript"
-                },
-                "2": {
+                "1": {
 					"name": "storage.modifier.karyscript"
 				},
-                "3": {
+                "2": {
                     "name": "entity.name.function.karyscript"
                 },
-                "4": {
+                "3": {
                     "name": "variable.parameter.karyscript"
                 }
 			},
@@ -138,6 +135,10 @@
 				}
             }
         },
+		"usable": {
+			"match": "\\b(?:usable)\\b",
+			"name": "storage.modifier.usable.karyscript"
+		},
         "s-expression": {
             "name": "s-expression.karyscript",
             "begin": "(\\()(?:\\s)*((?:\\/(?:\\s)*)?(?:[0-9a-zA-Z\\$_\\-](?:[\\w\\$_\\-])*(?:\\s)*\\/(?:\\s)*)*)([0-9a-zA-Z\\$_\\-](?:[\\w\\$_\\-])*)\\b",
@@ -181,21 +182,18 @@
         },
         "class-declaration": {
             "name": "meta.class.karyscript",
-            "begin": "\\b(?:(out)(?:\\s)+)?(class)(?:\\s)+([0-9a-zA-Z\\$\\-_][\\w\\$\\-_]*)(?:(?:\\s)+(extends)(?:\\s)+([0-9a-zA-Z\\$\\-_][\\w\\$\\-_]*)(?:\\s)*|(?:\\s)*)?\\:",
+            "begin": "\\b(class)(?:\\s)+([0-9a-zA-Z\\$\\-_](?:[\\w\\$\\-_])*)(?:(?:(?:\\s)+(extends)(?:\\s)+([0-9a-zA-Z\\$\\-_](?:[\\w\\$\\-_])*)(?:\\s)*|(?:\\s)*))?\\:",
 			"beginCaptures": {
-				"1": {
-                    "name": "storage.type.karyscript"
-                },
-                "2": {
+                "1": {
 					"name": "storage.type.class.karyscript"
 				},
-                "3": {
+                "2": {
                     "name": "entity.name.type.class.karyscript"
                 },
-                "4": {
+                "3": {
                     "name": "storage.type.class.karyscript"
                 },
-                "5": {
+                "4": {
                     "name": "entity.name.type.class.karyscript"
                 }
 			},
@@ -586,6 +584,9 @@
                 {
                     "include": "#placeholder"
                 },
+				{
+					"include": "#usable"
+				},
                 {
                     "include": "#identifier"
                 },
