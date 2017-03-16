@@ -20,11 +20,11 @@
             "name": "keyword.control.karyscript"
         },
         "punctuation-comma": {
-			"name": "punctuation.separator.comma.js",
+			"name": "punctuation.separator.comma.karyscript",
 			"match": ","
 		},
 		"punctuation-accessor": {
-			"name": "punctuation.accessor.js",
+			"name": "punctuation.accessor.karyscript",
 			"match": "\/"
 		},
         "constants-identifiers": {
@@ -134,6 +134,23 @@
 				}
             }
         },
+        "do-clause": {
+            "begin": "\\b(do)\\b",
+            "beginCaptures": {
+                "1": {
+                    "name": "keyword.control.karyscript"
+                }
+            },
+            "patterns": [{
+               "include": "#expression"
+            }],
+            "end": "\\b(end)\\b",
+            "endCaptures": {
+                "1": {
+                    "name": "keyword.control.karyscript"
+                }
+            }
+        },
         "class-declaration": {
             "name": "meta.class.karyscript",
             "begin": "\\b(?:(out)(?:\\s)+)?(class)(?:\\s)+([0-9a-zA-Z\\$\\-_][\\w\\$\\-_]*)(?:(?:\\s)+(extends)(?:\\s)+([0-9a-zA-Z\\$\\-_][\\w\\$\\-_]*)(?:\\s)*|(?:\\s)*)?\\:",
@@ -180,6 +197,306 @@
                 }
             ]
         },
+        "string-single": {
+			"name": "string.single.template.karyscript",
+			"begin": "([_$[:alpha:]][_$[:alnum:]]*)?(')",
+			"beginCaptures": {
+				"1": {
+					"name": "entity.name.function.tagged-template.karyscript"
+				},
+				"2": {
+					"name": "punctuation.definition.string.single.begin.karyscript"
+				}
+			},
+			"end": "'",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.single.end.karyscript"
+				}
+			},
+			"patterns": [
+				{
+                    "include": "#template-substitution-element-expression"
+                },
+                {
+                    "include": "#template-substitution-element-s-expression"
+                },
+				{
+					"include": "#string-character-escape"
+				}
+			]
+		},
+        "string-double": {
+			"name": "string.double.template.karyscript",
+			"begin": "([_$[:alpha:]][_$[:alnum:]]*)?(\")",
+			"beginCaptures": {
+				"1": {
+					"name": "entity.name.function.tagged-template.karyscript"
+				},
+				"2": {
+					"name": "punctuation.definition.string.double.begin.karyscript"
+				}
+			},
+			"end": "\"",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.double.end.karyscript"
+				}
+			},
+			"patterns": [
+				{
+                    "include": "#template-substitution-element-expression"
+                },
+                {
+                    "include": "#template-substitution-element-s-expression"
+                },
+				{
+					"include": "#string-character-escape"
+				}
+			]
+		},
+		"string-character-escape": {
+			"name": "constant.character.escape.karyscript",
+			"match": "\\\\(x\\h{2}|[0-2][0-7]{0,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.|#)"
+		},
+		"template-substitution-element-expression": {
+            "name": "meta.template.expression.karyscript",
+			"begin": "#\\{",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.template-expression.begin.karyscript"
+				}
+			},
+			"end": "\\}",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.template-expression.end.karyscript"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#expression"
+				}
+			]
+		},
+        "template-substitution-element-s-expression": {
+            "name": "meta.template.expression.karyscript",
+			"begin": "(#\\()(?:\\s)*((?:\\/(?:\\s)*)?(?:[0-9a-zA-Z\\$_\\-](?:[\\w\\$_\\-])*(?:\\s)*\\/(?:\\s)*)*)([0-9a-zA-Z\\$_\\-](?:[\\w\\$_\\-])*)\\b",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.definition.template-expression.begin.karyscript"
+				},
+                "2": {
+                    "name": "variable.other.object.karyscript"
+                },
+                "3": {
+                    "name": "entity.name.function.karyscript"
+                }
+			},
+			"end": "\\)",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.template-expression.end.karyscript"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#expression"
+				}
+			]
+		},
+        "regex": {
+			"patterns": [
+				{
+					"name": "string.regexp.karyscript",
+					"begin": "(?<=[=(:,\\[?+!]|return|case|=>|&&|\\|\\||\\*\\/)\\s*(/)(?![/*])(?=(?:[^/\\\\\\[]|\\\\.|\\[([^\\]\\\\]|\\\\.)+\\])+/(?![/*])[gimy]*(?!\\s*[a-zA-Z0-9_$]))",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.string.begin.karyscript"
+						}
+					},
+					"end": "(/)([gimuy]*)",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.definition.string.end.karyscript"
+						},
+						"2": {
+							"name": "keyword.other.karyscript"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#regexp"
+						}
+					]
+				},
+				{
+					"name": "string.regexp.karyscript",
+					"begin": "(?<![_$[:alnum:]])/(?![/*])(?=(?:[^/\\\\\\[]|\\\\.|\\[([^\\]\\\\]|\\\\.)+\\])+/(?![/*])[gimy]*(?!\\s*[a-zA-Z0-9_$]))",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.karyscript"
+						}
+					},
+					"end": "(/)([gimuy]*)",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.definition.string.end.karyscript"
+						},
+						"2": {
+							"name": "keyword.other.karyscript"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#regexp"
+						}
+					]
+				}
+			]
+		},
+		"regexp": {
+			"patterns": [
+				{
+					"name": "keyword.control.anchor.regexp",
+					"match": "\\\\[bB]|\\^|\\$"
+				},
+				{
+					"name": "keyword.other.back-reference.regexp",
+					"match": "\\\\[1-9]\\d*"
+				},
+				{
+					"name": "keyword.operator.quantifier.regexp",
+					"match": "[?+*]|\\{(\\d+,\\d+|\\d+,|,\\d+|\\d+)\\}\\??"
+				},
+				{
+					"name": "keyword.operator.or.regexp",
+					"match": "\\|"
+				},
+				{
+					"name": "meta.group.assertion.regexp",
+					"begin": "(\\()((\\?=)|(\\?!))",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.group.regexp"
+						},
+						"2": {
+							"name": "punctuation.definition.group.assertion.regexp"
+						},
+						"3": {
+							"name": "meta.assertion.look-ahead.regexp"
+						},
+						"4": {
+							"name": "meta.assertion.negative-look-ahead.regexp"
+						}
+					},
+					"end": "(\\))",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.definition.group.regexp"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#regexp"
+						}
+					]
+				},
+				{
+					"name": "meta.group.regexp",
+					"begin": "\\((\\?:)?",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.group.regexp"
+						},
+						"1": {
+							"name": "punctuation.definition.group.capture.regexp"
+						}
+					},
+					"end": "\\)",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.group.regexp"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#regexp"
+						}
+					]
+				},
+				{
+					"name": "constant.other.character-class.set.regexp",
+					"begin": "(\\[)(\\^)?",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.character-class.regexp"
+						},
+						"2": {
+							"name": "keyword.operator.negation.regexp"
+						}
+					},
+					"end": "(\\])",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.definition.character-class.regexp"
+						}
+					},
+					"patterns": [
+						{
+							"name": "constant.other.character-class.range.regexp",
+							"match": "(?:.|(\\\\(?:[0-7]{3}|x\\h\\h|u\\h\\h\\h\\h))|(\\\\c[A-Z])|(\\\\.))\\-(?:[^\\]\\\\]|(\\\\(?:[0-7]{3}|x\\h\\h|u\\h\\h\\h\\h))|(\\\\c[A-Z])|(\\\\.))",
+							"captures": {
+								"1": {
+									"name": "constant.character.numeric.regexp"
+								},
+								"2": {
+									"name": "constant.character.control.regexp"
+								},
+								"3": {
+									"name": "constant.character.escape.backslash.regexp"
+								},
+								"4": {
+									"name": "constant.character.numeric.regexp"
+								},
+								"5": {
+									"name": "constant.character.control.regexp"
+								},
+								"6": {
+									"name": "constant.character.escape.backslash.regexp"
+								}
+							}
+						},
+						{
+							"include": "#regex-character-class"
+						}
+					]
+				},
+				{
+					"include": "#regex-character-class"
+				}
+			]
+		},
+		"regex-character-class": {
+			"patterns": [
+				{
+					"name": "constant.other.character-class.regexp",
+					"match": "\\\\[wWsSdDtrnvf]|\\."
+				},
+				{
+					"name": "constant.character.numeric.regexp",
+					"match": "\\\\([0-7]{3}|x\\h\\h|u\\h\\h\\h\\h)"
+				},
+				{
+					"name": "constant.character.control.regexp",
+					"match": "\\\\c[A-Z]"
+				},
+				{
+					"name": "constant.character.escape.backslash.regexp",
+					"match": "\\\\."
+				}
+			]
+		},
         "expression": {
             "name": "expression.karyscript",
             "patterns": [
@@ -214,7 +531,19 @@
                     "include": "#zone-declaration"
                 },
                 {
+                    "include": "#do-clause"
+                },
+                {
                     "include": "#s-expression"
+                },
+                {
+                    "include": "#regex"
+                },
+                {
+                    "include": "#string-double"
+                },
+                {
+                    "include": "#string-single"
                 },
                 {
                     "include": "#identifier"
