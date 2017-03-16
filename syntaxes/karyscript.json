@@ -16,7 +16,7 @@
             "name": "constant.numeric.karyscript"
         },
         "keywords": {
-            "match": "\\b(?:also(?:\\s)+(?:if|unless)|return|throw|yield|delete|new|of|in|up|down|when|to|via|clone|import|void|await|async|catch|finally|case|default|continue|debugger|else)\\b",
+            "match": "\\b(?:also(?:\\s)+(?:if|unless)|mut|fix|return|throw|yield|delete|new|of|in|up|down|when|to|via|clone|import|void|await|async|catch|finally|case|default|continue|debugger|else)\\b",
             "name": "keyword.control.karyscript"
         },
         "punctuation-comma": {
@@ -27,6 +27,10 @@
 			"name": "punctuation.accessor.karyscript",
 			"match": "\/"
 		},
+        "punctuation-lambda": {
+            "match": "\\=\\>",
+            "name": "storage.type.function.arrow"
+        },
         "constants-identifiers": {
             "match": "\\b(?:true|false|on|off|right|wrong|undefined|ufo|null|nothing|NaN)\\b",
             "name": "constant.language.karyscript"
@@ -70,7 +74,7 @@
 					"name": "storage.modifier.karyscript"
 				},
                 "2": {
-                    "name": "entity.name.function.karyscript"
+                    "name": "entity.name.type.zone.karyscript"
                 }
             },
             "patterns": [ {
@@ -80,6 +84,26 @@
             "endCaptures": {
                 "1": {
 					"name": "storage.modifier.karyscript"
+				}
+            }
+        },
+        "named-object-array": {
+            "begin": "\\b(object|array)(?:\\s)+([0-9a-zA-Z\\$\\-_](?:[\\w\\$\\-_\\/])*)(?:\\s)*\\:",
+            "beginCaptures": {
+                "1": {
+					"name": "storage.modifier.named.karyscript"
+				},
+                "2": {
+                    "name": "variable.other.property.karyscript"
+                }
+            },
+            "patterns": [ {
+               "include": "#expression"
+            }],
+            "end": "\\b(end)\\b",
+            "endCaptures": {
+                "1": {
+					"name": "storage.modifier.named.karyscript"
 				}
             }
         },
@@ -497,6 +521,10 @@
 				}
 			]
 		},
+        "object-key": {
+            "name": "meta.object-literal.key.karyscript",
+            "match": "\\b[0-9a-zA-Z\\$\\-_](?:[\\w\\$\\-_])*(?:\\s)*\\:"
+        },
         "expression": {
             "name": "expression.karyscript",
             "patterns": [
@@ -528,6 +556,9 @@
                     "include": "#constants-identifiers"
                 },
                 {
+                    "include": "#named-object-array"
+                },
+                {
                     "include": "#zone-declaration"
                 },
                 {
@@ -546,7 +577,13 @@
                     "include": "#string-single"
                 },
                 {
+                    "include": "#object-key"
+                },
+                {
                     "include": "#identifier"
+                },
+                {
+                    "include": "#punctuation-lambda"
                 }
             ]
         }
