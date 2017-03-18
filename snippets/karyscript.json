@@ -79,5 +79,77 @@
             "end"
 		],
 		"description": "Zone"
+	},
+	"switch": {
+		"prefix": "switch",
+		"body": [
+			"switch ${1:on}:",
+			"\tdefault",
+			"\t\t$0",
+            "end"
+		],
+		"description": "Switch"
+	},
+	"case": {
+		"prefix": "case",
+		"body": [
+			"case ${1:expression}:",
+			"\t$0"
+		],
+		"description": "Switch's Single Case"
+	},
+	"for up": {
+		"prefix": "for up",
+		"body": [
+			"for ${1:start index} up to ${2:end index}:",
+			"\t$0",
+			"end"
+		],
+		"description": "Simple for up"
+	},
+	"for down": {
+		"prefix": "for down",
+		"body": [
+			"for ${1:start index} down to ${2:end index}:",
+			"\t$0",
+			"end"
+		],
+		"description": "Simple for down"
+	},
+	"for of": {
+		"prefix": "for of",
+		"body": [
+			"for ${1:element} of ${2:iterable}:",
+			"\t$0",
+			"end"
+		],
+		"description": "Simple For-Of"	
+	},
+	"for in": {
+		"prefix": "for in",
+		"body": [
+			"for ${1:element} in ${2:iterable}:",
+			"\t$0",
+			"end"
+		],
+		"description": "Simple For-In"	
+	},
+	"conditional for of": {
+		"prefix": "for of when",
+		"body": [
+			"for ${1:element} of ${2:iterable} when ${3:condition}:",
+			"\t$0",
+			"end"
+		],
+		"description": "For-Of with Condition"	
+	},
+	"conditional for in": {
+		"prefix": "for in when",
+		"body": [
+			"for ${1:element} in ${2:iterable} when ${3:condition}:",
+			"\t$0",
+			"end"
+		],
+		"description": "For-In with Condition"	
 	}
 }
