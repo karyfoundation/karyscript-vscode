@@ -24,7 +24,7 @@
 			"   $0",
             "end"
 		],
-		"description": "Function Definition"
+		"description": "Async Function Definition"
 	},
 	"async": {
 		"prefix": "async",
@@ -33,6 +33,24 @@
 			"   $0",
             "end"
 		],
-		"description": "Function Definition"
+		"description": "Async Function Definition"
+	},
+	"todo": {
+		"prefix": "do",
+		"body": [
+			"do",
+			"   $0",
+            "end"
+		],
+		"description": "Anonymous Function"
+	},
+	"do": {
+		"prefix": "todo",
+		"body": [
+			"to ${1:params} do",
+			"   $0",
+            "end"
+		],
+		"description": "Anonymous Function with Arguments"
 	}
 }
