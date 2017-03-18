@@ -70,5 +70,14 @@
             "end"
 		],
 		"description": "Named Array"
+	},
+	"zone": {
+		"prefix": "zone",
+		"body": [
+			"zone ${1:address}:",
+			"   $0",
+            "end"
+		],
+		"description": "Zone"
 	}
 }
