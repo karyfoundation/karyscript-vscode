@@ -151,5 +151,27 @@
 			"end"
 		],
 		"description": "For-In with Condition"	
+	},
+	"class": {
+		"prefix": "class",
+		"body": [
+			"class ${1:name}:",
+			"\tdef init:",
+			"\t\t$0",
+			"\tend",
+			"end"
+		],
+		"description": "Simple Class Definition"	
+	},
+	"extended class": {
+		"prefix": "class extended",
+		"body": [
+			"class ${1:name} extends ${2:origin}:",
+			"\tdef init:",
+			"\t\t$0",
+			"\tend",
+			"end"
+		],
+		"description": "Simple Class Definition"	
 	}
 }
