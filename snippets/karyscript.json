@@ -52,5 +52,23 @@
             "end"
 		],
 		"description": "Anonymous Function with Arguments"
+	},
+	"object": {
+		"prefix": "object",
+		"body": [
+			"object ${1:name}:",
+			"   $0",
+            "end"
+		],
+		"description": "Named Object"
+	},
+	"array": {
+		"prefix": "array",
+		"body": [
+			"array ${1:name}:",
+			"   $0",
+            "end"
+		],
+		"description": "Named Array"
 	}
 }
