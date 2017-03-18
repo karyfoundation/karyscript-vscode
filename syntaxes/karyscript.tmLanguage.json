@@ -56,16 +56,23 @@
             "match": "\\b(fix|mut)\\b",
             "name": "storage.type.karyscript"
         },
-        "identifier": {
-            "match": "\\b((?:(?:\\/(?:\\s)*)?[0-9a-zA-Z\\$\\-_](?:[\\w\\$\\-_])*(?:\\s)*\\/(?:\\s)*)*)([0-9a-zA-Z\\$\\-_](?:[\\w\\$\\-_])*)\\b",
-            "captures": {
-                "1": {
-					"name": "variable.other.object.karyscript"
+		"address": {
+			"match": "\\b((?:\\/(?:\\s)*)?)((?:[0-9a-zA-Z\\$\\-_](?:[\\w\\$\\-_])*)*)(?:\\s)*(\\/)",
+			"captures": {
+				"1": {
+					"name": "punctuation.accessor.karyscript"
 				},
-                "2": {
-                    "name": "variable.other.property.karyscript"
-                }
-            }
+				"2": {
+					"name": "variable.other.object.karyscript.karyscript"
+				},
+				"3": {
+					"name": "punctuation.accessor.karyscript"
+				}
+			}
+		},
+        "identifier": {
+            "match": "\\b([0-9a-zA-Z\\$\\-_](?:[\\w\\$\\-_])*)\\b",
+            "name": "variable.other.property.karyscript"
         },
         "placeholder": {
             "match": "@[0-9a-zA-Z\\$\\-_](?:[\\w\\$\\-_])*\\b",
@@ -586,6 +593,9 @@
                 },
 				{
 					"include": "#usable"
+				},
+				{
+					"include": "#address"
 				},
                 {
                     "include": "#identifier"

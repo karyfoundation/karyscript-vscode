@@ -25,7 +25,7 @@
 		"grammars": [{
 			"language": "karyscript",
 			"scopeName": "source.karyscript",
-			"path": "./syntaxes/karyscript.json"
+			"path": "./syntaxes/karyscript.tmLanguage.json"
 		}],
 		"snippets": [{
 			"language": "karyscript",
