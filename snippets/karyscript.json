@@ -173,5 +173,19 @@
 			"end"
 		],
 		"description": "Simple Class Definition"	
+	},
+	"query": {
+		"prefix": "query",
+		"body": [
+			"[ ${1:origin} | ${2:query} ]"
+		],
+		"description": "Object Query"	
+	},
+	"lambda": {
+		"prefix": "lambda",
+		"body": [
+			"[ ${1:params} => ${2:body} ]"
+		],
+		"description": "Inline lambda"	
 	}
 }
