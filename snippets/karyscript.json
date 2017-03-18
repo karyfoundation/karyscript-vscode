@@ -16,5 +16,23 @@
             "end"
 		],
 		"description": "Simple unless"
+	},
+	"def": {
+		"prefix": "def",
+		"body": [
+			"def ${1:name}:",
+			"   $0",
+            "end"
+		],
+		"description": "Function Definition"
+	},
+	"async": {
+		"prefix": "async",
+		"body": [
+			"async ${1:name}:",
+			"   $0",
+            "end"
+		],
+		"description": "Function Definition"
 	}
 }
