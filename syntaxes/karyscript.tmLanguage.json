@@ -32,7 +32,7 @@
             "name": "storage.type.function.arrow"
         },
         "constants-identifiers": {
-            "match": "(?:\\b(?:true|false|on|off|yes|no|undefined|ufo|null|nothing|NaN)\\b)(?!\\-)",
+            "match": "(?:\\b(?:true|false|on|off|yes|no|undefined|ufo|empty|nothing|NaN)\\b)(?!\\-)",
             "name": "constant.language.karyscript"
         },
         "controls-structures": {
