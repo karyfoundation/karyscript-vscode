@@ -57,7 +57,7 @@
             "name": "storage.type.karyscript"
         },
 		"address": {
-			"match": "\\b((?:\\/(?:\\s)*)?)((?:[0-9a-zA-Z\\$\\-_](?:[\\w\\$\\-_])*)*)(?:\\s)*(\\/)",
+			"match": "\\b(?:((?:\\/(?:\\s)*)?)((?:[0-9a-zA-Z\\$\\-_](?:[\\w\\$\\-_])*)*)(?:\\s)*(\\/))(?!\\=)",
 			"captures": {
 				"1": {
 					"name": "punctuation.accessor.karyscript"
