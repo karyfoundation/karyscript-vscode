@@ -16,7 +16,7 @@
             "name": "constant.numeric.karyscript"
         },
         "keywords": {
-            "match": "(?:\\b(?:also(?:\\s)+(?:if|unless)|mut|fix|return|throw|yield|delete|new|of|in|up|down|when|to|via|clone|import|void|await|async|catch|finally|case|default|continue|debugger|else|use|from|as)\\b)(?!\\-)",
+            "match": "(?:\\b(?:also(?:\\s)+(?:if|unless)|mut|fix|return|throw|yield|delete|new|of|in|up|down|when|to|via|clone|void|await|async|catch|finally|case|default|continue|debugger|else|use|from|as|step|via)\\b)(?!\\-)",
             "name": "keyword.control.karyscript"
         },
         "punctuation-comma": {
@@ -95,6 +95,23 @@
             "endCaptures": {
                 "1": {
 					"name": "storage.modifier.karyscript"
+				}
+            }
+        },
+		"switch-statement": {
+            "begin": "\\b(switch)(?:\\s)+",
+            "beginCaptures": {
+                "1": {
+					"name": "keyword.control.switch.karyscript"
+				}
+            },
+            "patterns": [ {
+               "include": "#expression"
+            }],
+            "end": "\\b(end)\\b",
+            "endCaptures": {
+                "1": {
+					"name": "keyword.control.switch.karyscript"
 				}
             }
         },
@@ -549,6 +566,9 @@
                 {
                     "include": "#keywords"
                 },
+				{
+					"include": "#switch-statement"
+				},
                 {
                     "include": "#literal"
                 },
