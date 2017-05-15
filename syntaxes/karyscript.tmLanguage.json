@@ -692,7 +692,7 @@
 					"name": "punctuation.definition.tag.end.karyscript"
 				}
 			},
-			"contentName": "meta.jsx.children.tsx",
+			"contentName": "meta.jsx.children.karyscript",
 			"patterns": [
 				{
 					"include": "#jsx-children"
