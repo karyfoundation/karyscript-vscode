@@ -551,9 +551,293 @@
             "name": "meta.object-literal.key.karyscript",
             "match": "\\b[0-9a-zA-Z\\$\\-_](?:[\\w\\$\\-_])*(?:\\s)*\\:"
         },
+				"jsx-tag-attributes": {
+			"patterns": [
+				{
+					"include": "#jsx-tag-attribute-name"
+				},
+				{
+					"include": "#jsx-tag-attribute-assignment"
+				},
+				{
+					"include": "#jsx-string-double-quoted"
+				},
+				{
+					"include": "#jsx-string-single-quoted"
+				},
+				{
+					"include": "#jsx-evaluated-code"
+				}
+			]
+		},
+		"jsx-tag-attribute-name": {
+			"match": "(?x)\n  \\s*\n  ([_$a-zA-Z][-$\\w]*)\n  (?=\\s|=|/?>|/\\*|//)",
+			"captures": {
+				"1": {
+					"name": "entity.other.attribute-name.karyscript"
+				}
+			}
+		},
+		"jsx-tag-attribute-assignment": {
+			"name": "keyword.operator.assignment.karyscript",
+			"match": "=(?=\\s*(?:'|\"|{|/\\*|//|\\n))"
+		},
+		"jsx-string-double-quoted": {
+			"name": "string.quoted.double.karyscript",
+			"begin": "\"",
+			"end": "\"",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.begin.karyscript"
+				}
+			},
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.end.karyscript"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#jsx-entities"
+				}
+			]
+		},
+		"jsx-string-single-quoted": {
+			"name": "string.quoted.single.karyscript",
+			"begin": "'",
+			"end": "'",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.begin.karyscript"
+				}
+			},
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.end.karyscript"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#jsx-entities"
+				}
+			]
+		},
+		"jsx-entities": {
+			"patterns": [
+				{
+					"name": "constant.character.entity.karyscript",
+					"match": "(&)([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+)(;)",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.entity.karyscript"
+						},
+						"3": {
+							"name": "punctuation.definition.entity.karyscript"
+						}
+					}
+				},
+				{
+					"name": "invalid.illegal.bad-ampersand.karyscript",
+					"match": "&"
+				}
+			]
+		},
+		"jsx-evaluated-code": {
+			"name": "meta.embedded.expression.karyscript",
+			"begin": "\\{",
+			"end": "\\}",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.section.embedded.begin.karyscript"
+				}
+			},
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.section.embedded.end.karyscript"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#expression"
+				}
+			]
+		},
+		"jsx-tag-attributes-illegal": {
+			"name": "invalid.illegal.attribute.karyscript",
+			"match": "\\S+"
+		},
+		"jsx-tag-without-attributes": {
+			"name": "meta.tag.without-attributes.karyscript",
+			"begin": "(<)\\s*([_$a-zA-Z][-$\\w.]*(?<!\\.|-))\\s*(>)",
+			"end": "(</)\\s*([_$a-zA-Z][-$\\w.]*(?<!\\.|-))\\s*(>)",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.definition.tag.begin.karyscript"
+				},
+				"2": {
+					"name": "entity.name.tag.karyscript"
+				},
+				"3": {
+					"name": "punctuation.definition.tag.end.karyscript"
+				}
+			},
+			"endCaptures": {
+				"1": {
+					"name": "punctuation.definition.tag.begin.karyscript"
+				},
+				"2": {
+					"name": "entity.name.tag.karyscript"
+				},
+				"3": {
+					"name": "punctuation.definition.tag.end.karyscript"
+				}
+			},
+			"contentName": "meta.jsx.children.tsx",
+			"patterns": [
+				{
+					"include": "#jsx-children"
+				}
+			]
+		},
+		"jsx-tag-in-expression": {
+			"begin": "(?x)\n  (?<=[({\\[,?=>:*]|&&|\\|\\||\\?|\\Wreturn|^return|\\Wdefault|^)\\s*\n  (?!(<)\\s*([_$a-zA-Z][-$\\w.]*(?<!\\.|-))\\s*(>)) #look ahead is not start of tag without attributes\n  (?!<\\s*[_$[:alpha:]][_$[:alnum:]]*((\\s+extends\\s+[^=>])|,)) # look ahead is not type parameter of arrow\n  (?=(<)\\s*\n  ([_$a-zA-Z][-$\\w.]*(?<!\\.|-))\n  (?=\\s+(?!\\?)|/?>))",
+			"end": "(/>)|(?:(</)\\s*([_$a-zA-Z][-$\\w.]*(?<!\\.|-))\\s*(>))",
+			"endCaptures": {
+				"0": {
+					"name": "meta.tag.karyscript"
+				},
+				"1": {
+					"name": "punctuation.definition.tag.end.karyscript"
+				},
+				"2": {
+					"name": "punctuation.definition.tag.begin.karyscript"
+				},
+				"3": {
+					"name": "entity.name.tag.karyscript"
+				},
+				"4": {
+					"name": "punctuation.definition.tag.end.karyscript"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#jsx-tag"
+				}
+			]
+		},
+		"jsx-child-tag": {
+			"begin": "(?x)\n  (?=(<)\\s*\n  ([_$a-zA-Z][-$\\w.]*(?<!\\.|-))\n  (?=\\s+(?!\\?)|/?>))",
+			"end": "(/>)|(?:(</)\\s*([_$a-zA-Z][-$\\w.]*(?<!\\.|-))\\s*(>))",
+			"endCaptures": {
+				"0": {
+					"name": "meta.tag.karyscript"
+				},
+				"1": {
+					"name": "punctuation.definition.tag.end.karyscript"
+				},
+				"2": {
+					"name": "punctuation.definition.tag.begin.karyscript"
+				},
+				"3": {
+					"name": "entity.name.tag.karyscript"
+				},
+				"4": {
+					"name": "punctuation.definition.tag.end.karyscript"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#jsx-tag"
+				}
+			]
+		},
+		"jsx-tag": {
+			"name": "meta.tag.karyscript",
+			"begin": "(?x)\n  (?=(<)\\s*\n  ([_$a-zA-Z][-$\\w.]*(?<!\\.|-))\n  (?=\\s+(?!\\?)|/?>))",
+			"end": "(?=(/>)|(?:(</)\\s*([_$a-zA-Z][-$\\w.]*(?<!\\.|-))\\s*(>)))",
+			"patterns": [
+				{
+					"begin": "(?x)\n  (<)\\s*\n  ([_$a-zA-Z][-$\\w.]*(?<!\\.|-))\n  (?=\\s+(?!\\?)|/?>)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.tag.begin.karyscript"
+						},
+						"2": {
+							"name": "entity.name.tag.karyscript"
+						}
+					},
+					"end": "(?=[/]?>)",
+					"patterns": [
+						{
+							"include": "#comment"
+						},
+						{
+							"include": "#jsx-tag-attributes"
+						},
+						{
+							"include": "#jsx-tag-attributes-illegal"
+						}
+					]
+				},
+				{
+					"begin": "(>)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.tag.end.karyscript"
+						}
+					},
+					"end": "(?=</)",
+					"contentName": "meta.jsx.children.karyscript",
+					"patterns": [
+						{
+							"include": "#jsx-children"
+						}
+					]
+				}
+			]
+		},
+		"jsx-tag-invalid": {
+			"name": "invalid.illegal.tag.incomplete.karyscript",
+			"match": "<\\s*>"
+		},
+		"jsx-children": {
+			"patterns": [
+				{
+					"include": "#jsx-tag-without-attributes"
+				},
+				{
+					"include": "#jsx-child-tag"
+				},
+				{
+					"include": "#jsx-tag-invalid"
+				},
+				{
+					"include": "#jsx-evaluated-code"
+				},
+				{
+					"include": "#jsx-entities"
+				}
+			]
+		},
+		"jsx": {
+			"patterns": [
+				{
+					"include": "#jsx-tag-without-attributes"
+				},
+				{
+					"include": "#jsx-tag-in-expression"
+				},
+				{
+					"include": "#jsx-tag-invalid"
+				}
+			]
+		},
         "expression": {
             "name": "expression.karyscript",
             "patterns": [
+				{
+					"include": "#jsx"
+				},
                 {
                     "include": "#controls-structures"
                 },
