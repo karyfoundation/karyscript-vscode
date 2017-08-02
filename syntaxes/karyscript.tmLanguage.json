@@ -27,10 +27,6 @@
 			"name": "punctuation.accessor.karyscript",
 			"match": "\/"
 		},
-        "punctuation-lambda": {
-            "match": "\\=\\>",
-            "name": "storage.type.function.arrow"
-        },
         "constants-identifiers": {
             "match": "(?:\\b(?:true|false|on|off|yes|no|undefined|ufo|empty|nothing|NaN)\\b)(?!\\-)",
             "name": "constant.language.karyscript"
@@ -230,7 +226,15 @@
 					"name": "storage.type.class.karyscript"
 				}
             }
-        },
+		},
+		"pipe-operator": {
+			"match": "\\-\\>",
+			"name": "keyword.operator.pipe.karyscript"
+		},
+		"arrow-operator": {
+			"match": "\\=\\>",
+			"name": "storage.type.function.arrow.karyscript"
+		},
         "comparison-operator": {
             "match": "(?:\\=\\=|\\!\\=|\\>|\\>\\=|\\<|\\<\\=)",
             "name": "keyword.operator.comparison.karyscript"
@@ -858,7 +862,13 @@
                 },
                 {
                     "include": "#class-declaration"
-                },
+				},
+				{
+					"include": "#pipe-operator"
+				},
+				{
+					"include": "#arrow-operator"
+				},
                 {
                     "include": "#comparison-operator"
                 },
